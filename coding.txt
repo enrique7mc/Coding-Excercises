@@ -1,0 +1,38 @@
+public boolean hasUniqueChars(String str) {
+	if(str == null) { throw new ArgumentException("str");}
+	if(str.length == 1 || str.length == 0) {return true;}
+	
+	Map<Character, Boolean> occurences =
+		new HashMap<>();
+
+	for(char c : str.toCharArray()) {
+		if(occurences.get(c) != null) {
+			return false;
+		}
+
+		occurences.put(c, true);
+	}
+
+	return true;
+}
+
+public boolean hasUniqueChars(String str) {
+	if(str == null) { throw new ArgumentException("str");}
+	if(str.length == 1 || str.length == 0) {return true;}
+
+	char[] occurences = new char[str.length];
+
+	occurences[0] = str.charAt(0);
+	for(int i = 1; i < str.length; i++) {		
+		for(int j = 0; j < i; j++) {			
+			char c1 = str.charAt(i);
+			if(c1 == occurences[i]) {
+				return false;
+			}
+
+			occurences[i] = c1;
+		}
+	}
+
+	return true;
+}
